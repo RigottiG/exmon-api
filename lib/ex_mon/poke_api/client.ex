@@ -6,6 +6,7 @@ defmodule ExMon.PokeApi.Client do
 
   def get_pokemon(name) do
     "/pokemon/#{name}"
+    |> String.downcase()
     |> get()
     |> handle_get()
   end
