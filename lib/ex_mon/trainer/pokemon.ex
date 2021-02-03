@@ -13,6 +13,7 @@ defmodule ExMon.Trainer.Pokemon do
     field :weight, :integer
     field :types, {:array, :string}
     belongs_to(:trainer, Trainer)
+    timestamps()
   end
 
   @required [:name, :nickname, :weight, :types, :trainer_id]
@@ -27,6 +28,7 @@ defmodule ExMon.Trainer.Pokemon do
     %__MODULE__{}
     |> cast(params, @required)
     |> validate_required(@required)
+    |> assoc_constraint(:trainer)
     |> validate_length(:nickname, min: 2)
   end
 end
